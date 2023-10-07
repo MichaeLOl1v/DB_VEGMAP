@@ -18,9 +18,12 @@ class DbOperation
 
 	function createusuario($nome, $telefone, $email, $senha){
 		$stmt = $this->conexao->prepare("INSERT INTO usuario (nome, telefone, email, senha) VALUES (?, ?, ?, ?)");
-		$stmt ->execute();
-		$stmt
+		$stmt->db2_bind_param("siss", $nome, $telefone, $email, $senha);
+		if ($stmt->execute()) 
+			return true;
+		return false;		
 	}
+	
 }
 
 
