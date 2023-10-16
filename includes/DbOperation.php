@@ -65,7 +65,7 @@
 
 
 		function createusuariopc($idusuarioPC, $nomePC, $cnpj, $telefonePC, $emailPC, $senhaPC){
-			$stmt = $this->conexao->prepare("INSERT INTO usuariopc (nomepc, cnpj, telefonePC, emailPC, senhaPC) VALUES (?, ?, ?, ?, ?)");
+			$stmt = $this->conexao->prepare("INSERT INTO usuariopc (nomePC, cnpj, telefonePC, emailPC, senhaPC) VALUES (?, ?, ?, ?, ?)");
 			$stmt->db2_bind_param("siiss", $nomePC, $cnpj, $telefonePC, $emailPC, $senhaPC);
 			if (stmt->execute()) 
 					return true;
@@ -108,5 +108,14 @@
 			if($stmt->execute())
 				return true;
 		}
+		
+		function createestabelecimento($idestab, $nome_estab, $endereco, $telefone_estab, $descricaoestab, $idusuarioPC, $tipo){
+			$stmt = $this->conexao->prepare("INSERT INTO  (nome_estab, endereco, telefone_estab, descricaoestab, idusuarioPC, tipo) VALUES (?, ?, ?, ?, ?, ?)");
+			$stmt->db2_bind_param("ssisis", $nome_estab, $endereco, $telefone_estab, $descricaoestab, $idusuarioPC, $tipo);
+			if (stmt->execute()) 
+					return true;
+				return false;
+		}
+
 	}
  ?>
