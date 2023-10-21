@@ -15,6 +15,7 @@
 			$this->conexao = $db->connect();
 		}
 
+		// TABELA USUARIOS
 
 		function createusuario($nome, $telefone, $email, $senha){
 			$stmt = $this->conexao->prepare("INSERT INTO usuario (nome, telefone, email, senha) VALUES (?, ?, ?, ?)");
@@ -62,7 +63,7 @@
 				return true;
 		}	
 
-
+		// TABELA USUARIOS PARCEIROS
 
 		function createusuariopc($idusuarioPC, $nomePC, $cnpj, $telefonePC, $emailPC, $senhaPC){
 			$stmt = $this->conexao->prepare("INSERT INTO usuariopc (nomePC, cnpj, telefonePC, emailPC, senhaPC) VALUES (?, ?, ?, ?, ?)");
@@ -108,6 +109,8 @@
 			if($stmt->execute())
 				return true;
 		}
+
+		// TABELA ESTABELECIMENTOS
 		
 		function createestabelecimento($idestab, $nome_estab, $endereco, $telefone_estab, $descricaoestab, $idusuarioPC, $tipo){
 			$stmt = $this->conexao->prepare("INSERT INTO  (nome_estab, endereco, telefone_estab, descricaoestab, idusuarioPC, tipo) VALUES (?, ?, ?, ?, ?, ?)");
@@ -116,6 +119,72 @@
 					return true;
 				return false;
 		}
+
+		function getestabelecimentos(){
+			$stmt = $this->conexao->prepare("SELECT idestab, nome_estab, endereco, telefone_estab, descricaoestab, idusuarioPC, tipo FROM estabelecimento")
+			$stmt->execute();
+			$stmt->bind_result($idestab, $nome_estab, $endereco, $telefone_estab, $descricaoestab, $idusuarioPC, $tipo);
+
+			$estabelecimentos = array();
+
+			while($stmt->fetch()){
+					$estabelecimento = array();
+					$estabelecimento['idestab'] = $idestab;
+					$estabelecimento['nome_estab'] = $nome_estab;
+					$estabelecimento['endereco'] = $endereco;
+					$estabelecimento['telefone_estab'] = $telefone_estab;
+					$estabelecimento['descricaoestab'] = $descricaoestab;
+					$estabelecimento['idusuarioPC'] = $idusuarioPC;
+					$estabelecimento['tipo'] = $tipo;
+
+					array_push($estabelecimentos, $estabelecimento);
+			}
+
+			return $estabelecimentos;
+		}
+
+		function updateestabelecimento($idestab, $nome_estab, $endereco, $telefone_estab, $descricaoestab, $idestab, $tipo){
+			$stmt = $this->conexao->prepare("UPDATE estabelecimento SET nome_estab = ?, endereco = ?, telefone_estab = ?, descricaoestab = ?, idusuarioPC = ?, tipo = ? WHERE idestab = ?");
+			$stmt->bind_param("ssisisi", $nome_estab, $endereco, $telefone_estab, $descricaoestab, $idusuarioPC, $tipo, $idestab);
+			if($stmt->execute())
+					return true;
+				return false;
+		}
+
+		function deleteestabelecimento($idestab){
+			$stmt = $this->conexao->prepare("DELETE FROM estabelecimento WHERE idestab = ? ");
+			$stmt->bind_param("i", $idestab);
+			if($stmt->execute())
+				return true;
+		}
+
+		// TABELA USUARIOS PRODUTO
+
+		function createproduto($idprodu, $nomeprodu, $tipoprodu, $medidaprodu, $saborprodu){
+			$stmt = $this->conexao->prepare("INSERT INTO produto (nomeprodu, tipoprodu, medidaprodu, saborprodu) VALUES (?, ?, ?, ?)");
+			$stmt->db2_bind_param("ssis", $nomeprodu, $tipoprodu, $medidaprodu, $saborprodu);
+			if (stmt->execute()) 
+					return true;
+				return false;		
+		}
+
+		function getprodutos(){
+			$stmt = $this->conexao->prepare("SELECT idprodu, nomeprodu, tipoprodu, medidaprodu, saborprodu FROM produto")
+			$stmt->execute();
+			$stmt->bind_result($idprodu, $nomeprodu, $tipoprodu, $medidaprodu, $saborprodu);
+
+			$produtos = array();
+
+			while($stmt->fetch()){
+					$produto = array();
+					$produto['idprodu'] = $idprodu;
+					$produto['nomeprodu'] = $nomeprodu;
+					$produto['tipoprodu'] = $tipoprodu;
+					$produto['medidaprodu'] = $medidaprodu;
+					$produto['saborprodu'] = $saborprodu;
+
+					array_push($produtos, $produto);
+			}
 
 	}
  ?>
