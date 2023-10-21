@@ -249,5 +249,49 @@
 				return true;
 		}
 
+		// TABELA AVALIAÇÃOP
+
+		function createavaliacaop($idavaliacaop, $notap, $comentariop, $idprodu){
+			$stmt = $this->conexao->prepare("INSERT INTO avaliacaop (notap, comentariop, idprodu) VALUES (?, ?, ?)");
+			$stmt->db2_bind_param("isi", $notap, $comentariop, $idprodu);
+			if (stmt->execute()) 
+					return true;
+				return false;		
+		}
+
+		function getavaliacaosp(){
+			$stmt = $this->conexao->prepare("SELECT idavaliacaop, notap, comentariop, idprodu FROM avaliacaop")
+			$stmt->execute();
+			$stmt->bind_result($idavaliacaop, $notap, $comentariop, $idprodu);
+
+			$produtos = array();
+
+			while($stmt->fetch()){
+					$avaliacaop = array();
+					$avaliacaop['idavaliacaop'] = $idavaliacaop;
+					$avaliacaop['notap'] = $notap;
+					$avaliacaop['comentariop'] = $comentariop;
+					$avaliacaop['idprodu'] = $idprodu;
+
+					array_push($avaliacaosp, $avaliacaop);
+			}
+
+			return $avaliacaosp;
+		}
+
+		function updateavaliacaop($idavaliacaop, $notap, $comentariop, $idprodu){
+			$stmt = $this->conexao->prepare("UPDATE avaliacaop SET notap = ?, comentariop = ?, idestabp = ? WHERE idavaliacaop = ?");
+			$stmt->bind_param("ssii", $notap, $comentariop, $idprodu, $idavaliacaop);
+			if($stmt->execute())
+					return true;
+				return false;
+		}
+
+		function deleteavaliacaop($idavaliacaop){
+			$stmt = $this->conexao->prepare("DELETE FROM avaliacaop WHERE idavaliacaop = ? ");
+			$stmt->bind_param("i", $idavaliacaop);
+			if($stmt->execute())
+				return true;
+		}
 	}
  ?>
