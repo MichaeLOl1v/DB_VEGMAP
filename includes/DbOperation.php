@@ -186,5 +186,68 @@
 					array_push($produtos, $produto);
 			}
 
+			return $produtos;
+		}
+
+		function updateproduto($idprodu, $nomeprodu, $tipoprodu, $medidaprodu, $saborprodu){
+			$stmt = $this->conexao->prepare("UPDATE produto SET nomeprodu = ?, tipoprodu = ?, medidaprodu = ?, saborprodu = ? WHERE idprodu = ?");
+			$stmt->bind_param("ssisi", $nomeprodu, $tipoprodu, $medidaprodu, $saborprodu, $idprodu);
+			if($stmt->execute())
+					return true;
+				return false;
+		}
+
+		function deleteproduto($idprodu){
+			$stmt = $this->conexao->prepare("DELETE FROM produto WHERE idprodu = ? ");
+			$stmt->bind_param("i", $idprodu);
+			if($stmt->execute())
+				return true;
+		}
+
+		// TABELA AVALIAÇÃO
+
+		function createavaliacao($idavaliacao, $nota, $comentario, $idestab){
+			$stmt = $this->conexao->prepare("INSERT INTO avaliacao (nota, comentario, idestab) VALUES (?, ?, ?)");
+			$stmt->db2_bind_param("isi", $nota, $comentario, $idestab);
+			if (stmt->execute()) 
+					return true;
+				return false;		
+		}
+
+		function getavaliacaos(){
+			$stmt = $this->conexao->prepare("SELECT idavaliacao, nota, comentario, idestab FROM avaliacao")
+			$stmt->execute();
+			$stmt->bind_result($idavaliacao, $nota, $comentario, $idestab);
+
+			$produtos = array();
+
+			while($stmt->fetch()){
+					$avaliacao = array();
+					$avaliacao['idavaliacao'] = $idavaliacao;
+					$avaliacao['nota'] = $nota;
+					$avaliacao['comentario'] = $comentario;
+					$avaliacao['idestab'] = $idestab;
+
+					array_push($avaliacaos, $avaliacao);
+			}
+
+			return $avaliacaos;
+		}
+
+		function updateavaliacao($idavaliacao, $nota, $comentario, $idestab){
+			$stmt = $this->conexao->prepare("UPDATE avaliacao SET nota = ?, comentario = ?, idestab = ? WHERE idavaliacao = ?");
+			$stmt->bind_param("ssii", $nota, $comentario, $idestab, $idavaliacao);
+			if($stmt->execute())
+					return true;
+				return false;
+		}
+
+		function deleteavaliacao($idavaliacao){
+			$stmt = $this->conexao->prepare("DELETE FROM avaliacao WHERE idavaliacao = ? ");
+			$stmt->bind_param("i", $idavaliacao);
+			if($stmt->execute())
+				return true;
+		}
+
 	}
  ?>
