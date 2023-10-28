@@ -143,7 +143,7 @@
 			return $estabelecimentos;
 		}
 
-		function updateestabelecimento($idestab, $nome_estab, $endereco, $telefone_estab, $descricaoestab, $idestab, $tipo){
+		function updateestabelecimento($idestab, $nome_estab, $endereco, $telefone_estab, $descricaoestab, $idusuarioPC, $tipo){
 			$stmt = $this->conexao->prepare("UPDATE estabelecimento SET nome_estab = ?, endereco = ?, telefone_estab = ?, descricaoestab = ?, idusuarioPC = ?, tipo = ? WHERE idestab = ?");
 			$stmt->bind_param("ssisisi", $nome_estab, $endereco, $telefone_estab, $descricaoestab, $idusuarioPC, $tipo, $idestab);
 			if($stmt->execute())
