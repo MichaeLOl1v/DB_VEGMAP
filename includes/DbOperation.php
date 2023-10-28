@@ -56,9 +56,9 @@
 			return false;
 		}
 
-		function deleteusuario($id){
-			$stmt = $this->conexao->prepare("DELETE FROM usuario WHERE id = ? ");
-			$stmt->bind_param("i", $id);
+		function deleteusuario($idusuario){
+			$stmt = $this->conexao->prepare("DELETE FROM usuario WHERE idusuario = ? ");
+			$stmt->bind_param("i", $idusuario);
 			if($stmt->execute())
 				return true;
 		}	
