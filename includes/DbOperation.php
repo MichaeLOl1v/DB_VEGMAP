@@ -8,7 +8,7 @@
 		function __construct()
 		{
 
-			require_once dirname(__FILE__) . 'DbConnect.php';
+			require_once dirname(__FILE__) . '/DbConnect.php';
 
 			$db = new DbConnect();
 
@@ -74,7 +74,7 @@
 		}
 
 		function getusuariospc(){
-			$stmt = $this->conexao->prepare("SELECT idusuarioPC, nomePC, cnpj, telefonePC, emailPC, senhaPC FROM usuariopc")
+			$stmt = $this->conexao->prepare("SELECT idusuarioPC, nomePC, cnpj, telefonePC, emailPC, senhaPC FROM usuariopc");
 			$stmt->execute();
 			$stmt->bind_result($idusuarioPC, $nomePC, $cnpj, $telefonePC, $emailPC, $senhaPC);
 
@@ -121,7 +121,7 @@
 		}
 
 		function getestabelecimentos(){
-			$stmt = $this->conexao->prepare("SELECT idestab, nome_estab, endereco, telefone_estab, descricaoestab, idusuarioPC, tipo FROM estabelecimento")
+			$stmt = $this->conexao->prepare("SELECT idestab, nome_estab, endereco, telefone_estab, descricaoestab, idusuarioPC, tipo FROM estabelecimento");
 			$stmt->execute();
 			$stmt->bind_result($idestab, $nome_estab, $endereco, $telefone_estab, $descricaoestab, $idusuarioPC, $tipo);
 
@@ -169,7 +169,7 @@
 		}
 
 		function getprodutos(){
-			$stmt = $this->conexao->prepare("SELECT idprodu, nomeprodu, tipoprodu, medidaprodu, saborprodu FROM produto")
+			$stmt = $this->conexao->prepare("SELECT idprodu, nomeprodu, tipoprodu, medidaprodu, saborprodu FROM produto");
 			$stmt->execute();
 			$stmt->bind_result($idprodu, $nomeprodu, $tipoprodu, $medidaprodu, $saborprodu);
 
@@ -215,7 +215,7 @@
 		}
 
 		function getavaliacaos(){
-			$stmt = $this->conexao->prepare("SELECT idavaliacao, nota, comentario, idestab FROM avaliacao")
+			$stmt = $this->conexao->prepare("SELECT idavaliacao, nota, comentario, idestab FROM avaliacao");
 			$stmt->execute();
 			$stmt->bind_result($idavaliacao, $nota, $comentario, $idestab);
 
@@ -260,7 +260,7 @@
 		}
 
 		function getavaliacaosp(){
-			$stmt = $this->conexao->prepare("SELECT idavaliacaop, notap, comentariop, idprodu FROM avaliacaop")
+			$stmt = $this->conexao->prepare("SELECT idavaliacaop, notap, comentariop, idprodu FROM avaliacaop");
 			$stmt->execute();
 			$stmt->bind_result($idavaliacaop, $notap, $comentariop, $idprodu);
 
