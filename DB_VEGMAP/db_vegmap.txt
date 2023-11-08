@@ -1,0 +1,11 @@
+USUARIO - idUsuario* ,Nome*, Telefone*,email*,senha
+
+USUARIO_PC - idUsuarioPC*,NomePC*,Cnpj*,TelefonePC*,emailPC*,senhaPC.
+
+ESTABELECIMENTO - idEstab*,NomeEstab*,Endereco,TelefoneEstab*,DescricaoEstab,Ha,Hf,id_idUsuarioPC,tipo*
+
+PRODUTO - idProdu*,NomeProdu*,TipoProdu*,MedidaProdu,SaborProdu.
+
+AVALIACAO - idAvaliação*,nota,comentario,id_idEstab
+
+AVALIACAOP - idAvaliaçãoP*,nota,comentario,id_idProdu
