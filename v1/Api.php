@@ -30,7 +30,7 @@
 	// USUARIO
 	
 	
-	$response = array();
+	$response1 = array();
 	
 
 	if(isset($_GET['apicall'])){
@@ -54,20 +54,20 @@
 			
 				if($result){
 					
-					$response['error'] = false; 
+					$response1['error'] = false; 
 
 					
-					$response['message'] = 'Usuario adicionado com sucesso';
+					$response1['message'] = 'Usuario adicionado com sucesso';
 
 					
-					$response['usuarios'] = $db->getusuarios();
+					$response1['usuarios'] = $db->getusuarios();
 				}else{
 
 					
-					$response['error'] = true; 
+					$response1['error'] = true; 
 
 				
-					$response['message'] = 'Algum erro ocorreu por favor tente novamente';
+					$response1['message'] = 'Algum erro ocorreu por favor tente novamente';
 				}
 				
 			break; 
@@ -75,9 +75,10 @@
 		
 			case 'getusuarios':
 				$db = new DbOperation();
-				$response['error'] = false; 
-				$response['message'] = 'Pedido concluído com sucesso';
-				$response['usuarios'] = $db->getusuarios();
+				$response1['error'] = false; 
+				$response1['message'] = 'Pedido concluído com sucesso';
+				$response1['usuarios'] = $db->getusuarios();
+
 
 
 			break; 
@@ -96,12 +97,12 @@
 				);
 				
 				if($result){
-					$response['error'] = false; 
-					$response['message'] = 'Usuario atualizado com sucesso';
-					$response['usuarios'] = $db->getusuarios();
+					$response1['error'] = false; 
+					$response1['message'] = 'Usuario atualizado com sucesso';
+					$response1['usuarios'] = $db->getusuarios();
 				}else{
-					$response['error'] = true; 
-					$response['message'] = 'Algum erro ocorreu por favor tente novamente';
+					$response1['error'] = true; 
+					$response1['message'] = 'Algum erro ocorreu por favor tente novamente';
 				}
 			break; 
 			
@@ -112,32 +113,34 @@
 				if(isset($_GET['idusuario'])){
 					$db = new DbOperation();
 					if($db->deleteusuario($_GET['idusuario'])){
-						$response['error'] = false; 
-						$response['message'] = 'Usuario excluído com sucesso';
-						$response['usuarios'] = $db->getusuarios();
+						$response1['error'] = false; 
+						$response1['message'] = 'Usuario excluído com sucesso';
+						$response1['usuarios'] = $db->getusuarios();
 					}else{
-						$response['error'] = true; 
-						$response['message'] = 'Algum erro ocorreu por favor tente novamente';
+						$response1['error'] = true; 
+						$response1['message'] = 'Algum erro ocorreu por favor tente novamente';
 					}
 				}else{
-					$response['error'] = true; 
-					$response['message'] = 'Não foi possível deletar, forneça um id por favor';
+					$response1['error'] = true; 
+					$response1['message'] = 'Não foi possível deletar, forneça um id por favor';
 				}
 			break; 
 		}
 		
 	}else{
 		 
-		$response['error'] = true; 
-		$response['message'] = 'Chamada de API inválida';
+		$response1['error'] = true; 
+		$response1['message'] = 'Chamada de API inválida';
+
 	}
-	
+
+	echo json_encode($response1);
 
 
 	// UsuarioPC
 	
 	
-	$response = array();
+	$response2 = array();
 	
 
 	if(isset($_GET['apicall'])){
@@ -237,6 +240,7 @@
 		$response['message'] = 'Chamada de API inválida';
 	}
 	
+	echo json_encode($response);
 
 	// ESTABELECIMENTO
 
@@ -348,6 +352,7 @@
 		$response['message'] = 'Chamada de API inválida';
 	}
 
+	echo json_encode($response);
 
 	// PRODUTO
 
@@ -455,6 +460,8 @@
 		$response['message'] = 'Chamada de API inválida';
 	}
 
+	echo json_encode($response);
+
 
 	// AVALIAÇÃO
 
@@ -559,6 +566,8 @@
 		$response['error'] = true; 
 		$response['message'] = 'Chamada de API inválida';
 	}
+
+	echo json_encode($response);
 
 
 	// AVALIAÇÃO P
