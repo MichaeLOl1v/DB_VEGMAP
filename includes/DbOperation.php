@@ -219,7 +219,7 @@
 			$stmt->execute();
 			$stmt->bind_result($idavaliacao, $nota, $comentario, $idestab);
 
-			$produtos = array();
+			$avaliacaos = array();
 
 			while($stmt->fetch()){
 					$avaliacao = array();
@@ -264,7 +264,7 @@
 			$stmt->execute();
 			$stmt->bind_result($idavaliacaop, $notap, $comentariop, $idprodu);
 
-			$produtos = array();
+			$avaliacaosp = array();
 
 			while($stmt->fetch()){
 					$avaliacaop = array();

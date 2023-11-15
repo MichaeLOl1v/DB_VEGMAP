@@ -31,8 +31,6 @@
 
 
 	
-	
-	
 	$response = array();
 	
 
@@ -78,7 +76,7 @@
 			break; 
 			
 		
-			case 'estabelecimentos':
+			case 'getestabelecimentos':
 				$db = new DbOperation();
 				$response['error'] = false; 
 				$response['message'] = 'Pedido concluído com sucesso';
